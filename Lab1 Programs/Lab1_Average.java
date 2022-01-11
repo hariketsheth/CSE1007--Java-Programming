@@ -9,10 +9,10 @@ public class Lab1_Average
         int n, sum = 0;
         float average;
         Scanner s = new Scanner(System.in);
-        System.out.print("Enter no. of elements you want in array:");
+        System.out.print("Enter no. of elements in array:");
         n = s.nextInt();
         int a[] = new int[n];
-        System.out.println("Enter all the elements:");
+        System.out.println("Enter the elements:");
         for(int i = 0; i < n ; i++)
         {
             a[i] = s.nextInt();
