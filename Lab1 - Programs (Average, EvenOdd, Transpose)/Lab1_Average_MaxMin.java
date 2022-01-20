@@ -34,3 +34,4 @@ public class Lab1_Average_MaxMin
         System.out.println("Average of the Numbers entered: "+average);
     }
 }
+
