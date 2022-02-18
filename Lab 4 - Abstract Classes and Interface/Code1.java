@@ -50,7 +50,6 @@ class BookSales implements BookInfo, SalesInfo {
             }
             b1[0] = b2;
         }
-        return b1;
     }
 }
 public class Lab4 {
