@@ -10,12 +10,12 @@ public class Lab5 {
             try {
                 num1 = sc.nextInt();
                 num2 = sc.nextInt();
+                System.out.println("Sum: " + (num1 + num2));
                 break;
-            } catch (InputMismatchException ime) {
+            } catch (InputMismatchException e) {
                 System.out.println("You must enter 2 integers! \n");
                 sc.nextLine();
             }
         }
-        System.out.println("Sum: " + (num1 + num2));
     }
 }
