@@ -45,16 +45,17 @@ class Employee {
     void index_search(ArrayList < Employee > arr, int n) {
         Scanner sc = new Scanner(System.in);
         boolean found = false;
+        System.out.print("Enter the ID to be searched: ");
         int search = sc.nextInt();
         for (int i = 0; i < n; i++) {
             if (arr.get(i).ID == search) {
-                System.out.print("Element found at index: " + i);
+                System.out.print("Element found at index: " + i+"\n");
                 found = true;
                 break;
             }
         }
         if (found == false)
-            System.out.print("Element is not present. Please Check again!!");
+            System.out.print("Element is not present. Please Check again!!\n");
     }
 
     void display(ArrayList < Employee > arr, int n) {

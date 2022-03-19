@@ -1,120 +1,120 @@
 package lab8;
 import java.util.*;
+import java.io.*;
 
-class Employee{
+class Employee {
     int ID, salary;
-    Employee(int ID, int Salary){
-        this.ID = ID;
-        this.salary = Salary;
-    }
-    
-    void get(){
+    void get() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter the Employee ID: ");
+        System.out.print("Enter the ID: ");
         ID = sc.nextInt();
-        System.out.print("Enter the Salary: ");
+        System.out.print("Enter the salary: ");
         salary = sc.nextInt();
     }
-    void set(){
-        System.out.print("The Employee ID: "+ID);
-        System.out.print("\nThe Salary of Employee: "+salary+"\n\n");
-    }
-    Employee[] add(Employee e1[], int n){
-        Employee e2[] = new Employee [n+1];  
-        for(int i=0; i<n; i++)
-            e2[i] = e1[i];
-        e2[n+1].get();
-        return e2;
-    }
-    Employee[] add_pos(Employee e1[], int n){
-        int pos; 
-        System.out.print("Enter the position: ");
-        Scanner sc = new Scanner(System.in);
-        pos = sc.nextInt();
-        Employee e2[] = new Employee[n+1];
-        if(pos<n){
-            for(int i=0; i<n+1; i++){
-                if(i<pos)
-                    e2[i] = e1[i];
-                else if(i==pos)
-                    e2[pos].get();
-                else
-                    e2[i] = e1[i-1];
-             }
-                    
-               return e2; 
-         }
-        else{
-            System.out.println("Invalid Position Entered");
-            return e1;
-        }
-}
-    
-Employee[] delete(Employee e1[], int n){
-    Employee e2[] = new Employee[n-1];
-    for(int i=0; i<n-1; i++)
-          e2[i] = e1[i];
-    return e2;
-}
 
-void search(Employee e1[], int n){
-    Scanner sc = new Scanner(System.in);
-    System.out.print("Enter the Employee ID to be searched: ");
-    int src = sc.nextInt();
-    boolean found = false;
-    for(int i=0; i<n; i++){
-        if(e1[i].ID == src){
-            System.out.println("Particular Employee is searched");
-            System.out.println("The Employee record is found at index: "+i);
-            found = true;
-        }
-     }
-    if(found==false)
-       System.out.println("The particular Employee is not present in the records.");
-} 
-
-public class Lab8{
-    public static void main(String[] args){
-        int ID=0, Salary=0;
-        int n;
+    int getID(Vector < Employee > arr) {
+        return ID;
+    }
+    Vector < Employee > add(Vector < Employee > arr, int n) {
+        Vector < Employee > arr2 = arr;
+        Employee temp = new Employee();
+        temp.get();
+        arr2.add(temp);
+        return arr2;
+    }
+    Vector < Employee > add_pos(Vector < Employee > arr, int n) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter the value of n: ");
-        n = sc.nextInt();
-        Employee e1[ ] = new Employee[n];
-        for(int i=0; i<n; i++){
-                e1[i] =new Employee(ID, Salary);
-                e1[i].get();               
+        Vector < Employee > arr2 = new Vector < Employee > (n);
+        System.out.print("Enter the position at which data have to be inserted: ");
+        int pos = sc.nextInt();
+        Employee temp = new Employee();
+        temp.get();
+        for (int i = 0; i < n + 1; i++) {
+            if (i < pos) arr2.add(arr.get(i));
+            else if (i == pos) arr2.add(temp);
+            else arr2.add(arr.get(i - 1));
         }
-        int choice;
-        System.out.print("Enter the choice: ");
-        choice = sc.nextInt();
+        return arr2;
+    }
+
+    Vector < Employee > delete(Vector < Employee > arr, int n) {
+        arr.remove(n - 1);
+        return arr;
+    }
+
+    void index_search(Vector < Employee > arr, int n) {
+        Scanner sc = new Scanner(System.in);
+        boolean found = false;
+        System.out.print("Enter the ID to be searched: ");
+        int search = sc.nextInt();
+        for (int i = 0; i < n; i++) {
+            if (arr.get(i).ID == search) {
+                System.out.print("Element found at index: " + i+"\n");
+                found = true;
+                break;
+            }
+        }
+        if (found == false)
+            System.out.print("Element is not present. Please Check again!!\n");
+    }
+
+    void display(Vector < Employee > arr, int n) {
+        for (int i = 0; i < n; i++) {
+            System.out.println("ID " + (i + 1) + ": " + arr.get(i).ID);
+            System.out.println("Salary " + (i + 1) + ": " + arr.get(i).salary);
+        }
+    }
+}
+public class Lab8 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the number of Employees: ");
+        int n = sc.nextInt();
+        Vector < Employee > arr = new Vector < Employee > (n);
+        Employee e1[] = new Employee[n];
+        for (int i = 0; i < n; i++) {
+            e1[i] = new Employee();
+            e1[i].get();
+            arr.add(e1[i]);
+        }
         boolean conti = true;
-        while(conti){
-        switch(choice){
-            case 1:{
-                e1 = e1[0].add(e1, n);
-                n += 1;
-                break;
+        while (conti) {
+            System.out.print("Enter the choice: ");
+            int choice = sc.nextInt();
+            switch (choice) {
+                case 1:
+                    {
+                        arr = e1[0].add(arr, n);
+                        n += 1;
+                        break;
+                    }
+                case 2:
+                    {
+                        arr = e1[0].add_pos(arr, n);
+                        n += 1;
+                        break;
+                    }
+                case 3:
+                    {
+                        arr = e1[0].delete(arr, n);
+                        n -= 1;
+                        break;
+                    }
+                case 4:
+                    {
+                        e1[0].index_search(arr, n);
+                        break;
+                    }
+                case 5:
+                    {
+                        e1[0].display(arr, n);
+                        break;
+                    }
+                
             }
-            case 2:{
-                e1 = e1[0].add_pos(e1, n);
-                n += 1;
-                break;
-            }
-            case 3:{
-                e1 = e1[0].delete(e1, n);
-                n -= 1;
-                break;
-            }
-            case 4:{
-                e1[0].search(e1, n);
-                break;
-            }
+            System.out.print("Do you wish to continue: (0/1): ");
+            int temp = sc.nextInt();
+            conti = (temp==1)?true:false;
         }
-        System.out.println("Do you wish to continue? Y/N");
-        char response = sc.next().charAt(i);
-        conti = (response == 'Y')?true:false;
-               
-    }
     }
 }
