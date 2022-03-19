@@ -2,32 +2,32 @@ package lab8;
 import java.util.*;
 import java.io.*;
 
-class Employee {
-    int ID, salary;
+class Student {
+    int ID, marks;
     void get() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter the ID: ");
         ID = sc.nextInt();
-        System.out.print("Enter the salary: ");
-        salary = sc.nextInt();
+        System.out.print("Enter the marks: ");
+        marks = sc.nextInt();
     }
 
-    int getID(Vector < Employee > arr) {
+    int getID(Vector < Student > arr) {
         return ID;
     }
-    Vector < Employee > add(Vector < Employee > arr, int n) {
-        Vector < Employee > arr2 = arr;
-        Employee temp = new Employee();
+    Vector < Student > add(Vector < Student > arr, int n) {
+        Vector < Student > arr2 = arr;
+        Student temp = new Student();
         temp.get();
         arr2.add(temp);
         return arr2;
     }
-    Vector < Employee > add_pos(Vector < Employee > arr, int n) {
+    Vector < Student > add_pos(Vector < Student > arr, int n) {
         Scanner sc = new Scanner(System.in);
-        Vector < Employee > arr2 = new Vector < Employee > (n);
+        Vector < Student > arr2 = new Vector < Student > (n);
         System.out.print("Enter the position at which data have to be inserted: ");
         int pos = sc.nextInt();
-        Employee temp = new Employee();
+        Student temp = new Student();
         temp.get();
         for (int i = 0; i < n + 1; i++) {
             if (i < pos) arr2.add(arr.get(i));
@@ -37,12 +37,12 @@ class Employee {
         return arr2;
     }
 
-    Vector < Employee > delete(Vector < Employee > arr, int n) {
+    Vector < Student > delete(Vector < Student > arr, int n) {
         arr.remove(n - 1);
         return arr;
     }
 
-    void index_search(Vector < Employee > arr, int n) {
+    void index_search(Vector < Student > arr, int n) {
         Scanner sc = new Scanner(System.in);
         boolean found = false;
         System.out.print("Enter the ID to be searched: ");
@@ -58,22 +58,22 @@ class Employee {
             System.out.print("Element is not present. Please Check again!!\n");
     }
 
-    void display(Vector < Employee > arr, int n) {
+    void display(Vector < Student > arr, int n) {
         for (int i = 0; i < n; i++) {
             System.out.println("ID " + (i + 1) + ": " + arr.get(i).ID);
-            System.out.println("Salary " + (i + 1) + ": " + arr.get(i).salary);
+            System.out.println("marks " + (i + 1) + ": " + arr.get(i).marks);
         }
     }
 }
 public class Lab8 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter the number of Employees: ");
+        System.out.print("Enter the number of Students: ");
         int n = sc.nextInt();
-        Vector < Employee > arr = new Vector < Employee > (n);
-        Employee e1[] = new Employee[n];
+        Vector < Student > arr = new Vector < Student > (n);
+        Student e1[] = new Student[n];
         for (int i = 0; i < n; i++) {
-            e1[i] = new Employee();
+            e1[i] = new Student();
             e1[i].get();
             arr.add(e1[i]);
         }
